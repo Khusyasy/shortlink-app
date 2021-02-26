@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const path = require('path');
 
@@ -5,17 +6,12 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.get('/api/getList', (req, res) => {
-    var list = [
-        { id: 1, name: "item1" },
-        { id: 2, name: "item2" },
-        { id: 3, name: "item3" }
-    ];
-    res.json(list);
-    console.log("list sent");
-});
+require("./helpers/database");
 
-// Handles any requests that don't match the ones above
+const apiRouter = require("./routes/api")
+
+app.use("/api", apiRouter);
+
 app.get('*', (req, res) =>{
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
