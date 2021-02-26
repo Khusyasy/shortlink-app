@@ -16,7 +16,9 @@ function App() {
 
     return (
         <div>
-            {links.map(link => (<p key={link._id}>{link.long}</p>))}
+            {links.map(link => (<div key={link._id}>
+                <p>{link.longUrl} {link.shortUrl} {link.createdBy}</p>
+            </div>))}
             <button onClick={getLinks}>Get Links</button>
         </div>
     );

@@ -19,8 +19,8 @@ exports.insertLink = async (req, res) => {
         var hashed = createShortID(url + Date.now());
         var link = new Link({
             _id: mongoose.Types.ObjectId(),
-            long_url: url,
-            short_url: hashed,
+            longUrl: url,
+            shortUrl: hashed,
             createdBy: null
         });
         try {
