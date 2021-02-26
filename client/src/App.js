@@ -2,18 +2,22 @@ import { useState } from "react";
 
 function App() {
     
-    var [list, setList] = useState([]);
+    var [links, setLinks] = useState([]);
 
-    var getList = () => {
-        fetch('/api/getList')
+    var getLinks = () => {
+        fetch('/api/getLinks')
             .then(response => response.json())
-            .then(data => setList(data));
+            .then(data => {
+                if (data.status === "success") {
+                    setLinks(data.links)
+                }
+            });
     }
 
     return (
         <div>
-            {list.map(item => (<p key={item.id}>{item.name}</p>))}
-            <button onClick={getList}>Get List</button>
+            {links.map(link => (<p key={link._id}>{link.long}</p>))}
+            <button onClick={getLinks}>Get Links</button>
         </div>
     );
 }
