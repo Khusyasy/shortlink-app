@@ -11,8 +11,11 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 require("./helpers/database");
 
 const apiRouter = require("./routes/api")
+const redirRouter = require("./routes/redir")
 
 app.use("/api", apiRouter);
+
+app.use("/", redirRouter);
 
 app.get('*', (req, res) =>{
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
