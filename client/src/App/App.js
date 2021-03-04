@@ -1,13 +1,14 @@
 import { useState } from "react";
+import axios from "axios";
 
 function App() {
     
     var [links, setLinks] = useState([]);
 
-    var getLinks = () => {
-        fetch('/api/getLinks')
-            .then(response => response.json())
-            .then(data => {
+    var getLinks = async () => {
+        axios.get('/api/getLinks')
+            .then(res => {
+                var data = res.data;
                 if (data.status === "success") {
                     setLinks(data.links)
                 }
