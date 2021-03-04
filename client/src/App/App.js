@@ -1,27 +1,34 @@
-import { useState } from "react";
-import axios from "axios";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { Container, CssBaseline } from "@material-ui/core";
+import Navbar from "./Navbar/Navbar";
+import MainPage from "./MainPage/MainPage";
 
 function App() {
-    
-    var [links, setLinks] = useState([]);
-
-    var getLinks = async () => {
-        axios.get('/api/getLinks')
-            .then(res => {
-                var data = res.data;
-                if (data.status === "success") {
-                    setLinks(data.links)
-                }
-            });
-    }
-
     return (
-        <div>
-            {links.map(link => (<div key={link._id}>
-                <p>{link.longUrl} {link.shortUrl} {link.createdBy}</p>
-            </div>))}
-            <button onClick={getLinks}>Get Links</button>
-        </div>
+        <Router>
+            <div>
+                <Navbar />
+                <Container fixed>
+                    <Switch>
+                        <Route path="/about">
+                            <h1>ABOUT</h1>
+                        </Route>
+                        <Route path="/users">
+                            <h1>USERS</h1>
+                        </Route>
+                        <Route path="/">
+                            <MainPage />
+                        </Route>
+                    </Switch>
+                </Container>
+            </div>
+            <CssBaseline />
+        </Router>
     );
 }
 
