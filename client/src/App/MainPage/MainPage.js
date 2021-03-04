@@ -2,7 +2,6 @@ import { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
 import LinkIcon from '@material-ui/icons/Link';
 import SendIcon from '@material-ui/icons/Send';
 import Grid from "@material-ui/core/Grid";
@@ -25,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
     input: {
         width: "100%",
         padding: theme.spacing(2),
+    },
+    inputIcon: {
+        [theme.breakpoints.down("sm")]: {
+            display: "none",
+        }
     }
 }));
 
@@ -35,29 +39,33 @@ function MainPage() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(input);
-        setInput("");
+        if (input !== "") {
+            console.log(input);
+            setInput("");
+        }
     }
 
     return (
         <Grid container className={classes.root} direction="column" alignContent="center" alignItems="center" justify="space-evenly">
             <Paper className={classes.paper} elevation={3}>
-                <Typography variant="h5">Link to Shorten</Typography>
+                <Typography variant="h5" align="center">Link to Shorten</Typography>
                 <form onSubmit={handleSubmit}>
                     <Grid item xs={12} className={classes.input}>
                         <Grid container spacing={1} alignItems="flex-end">
-                            <Grid item xs={2}>
+                            <Grid item md={2} className={classes.inputIcon}>
                                 <LinkIcon />
                             </Grid>
-                            <Grid item xs={10}>
+                            <Grid item xs={12} md={10}>
                                 <TextField type="text" id="link" label="Link" value={input} onChange={e => setInput(e.target.value)} />
                             </Grid>
                         </Grid>
                     </Grid>
                     <Grid item xs={12} className={classes.input}>
-                        <Button type="submit" variant="contained" color="primary">
-                            <SendIcon />&nbsp;Create
-                        </Button>
+                        <Grid container justify="center">
+                            <Button type="submit" variant="contained" color="primary">
+                                <SendIcon />&nbsp;Create
+                            </Button>
+                        </Grid>
                     </Grid>
                 </form>
             </Paper>
