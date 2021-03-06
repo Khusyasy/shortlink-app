@@ -33,3 +33,13 @@ exports.insertLink = async (req, res) => {
         res.json({ status: "failed", err: "URL is invalid" });
     }
 }
+
+exports.getLink = async (req, res) => {
+    var query = req.body;
+    try {
+        var link = await Link.findOne(query);
+        res.json({ status: "success", link: link });
+    } catch (err) {
+        res.json({ status: "failed", err: err });
+    }
+}
