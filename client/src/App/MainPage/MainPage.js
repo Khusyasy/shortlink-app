@@ -1,4 +1,6 @@
 import { useState } from "react";
+import axios from "axios";
+import {Redirect} from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -36,17 +38,28 @@ function MainPage() {
     const classes = useStyles();
 
     const [input, setInput] = useState("");
+    const [inserted, setInserted] = useState("");
+    const [error, setError] = useState("");
 
     function handleSubmit(e) {
         e.preventDefault();
         if (input !== "") {
-            console.log(input);
+            axios.post("/api/insertLink", { link: input })
+                .then(res => {
+                    var data = res.data;
+                    if (data.status === "success") {
+                        setInserted(data.link.shortUrl);
+                    } else if (data.status === "failed") {
+                        setError(data.err);
+                    }
+                });
             setInput("");
         }
     }
 
     return (
         <Grid container className={classes.root} direction="column" alignContent="center" alignItems="center" justify="space-evenly">
+            { inserted !== "" ? <Redirect to={"/show/" + inserted} /> : ""}
             <Paper className={classes.paper} elevation={3}>
                 <Typography variant="h5" align="center">Link to Shorten</Typography>
                 <form onSubmit={handleSubmit}>
@@ -56,7 +69,7 @@ function MainPage() {
                                 <LinkIcon />
                             </Grid>
                             <Grid item xs={12} md={10}>
-                                <TextField type="text" id="link" label="Link" value={input} onChange={e => setInput(e.target.value)} />
+                                <TextField type="text" id="link" label="Link" value={input} onChange={e => setInput(e.target.value)} error={error !== "" ? true : false} helperText={error} />
                             </Grid>
                         </Grid>
                     </Grid>

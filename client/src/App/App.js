@@ -15,8 +15,8 @@ function App() {
                 <Navbar />
                 <Container fixed>
                     <Switch>
-                        <Route path="/about">
-                            <h1>ABOUT</h1>
+                        <Route path="/show">
+                            <h1>SHOW</h1>
                         </Route>
                         <Route path="/users">
                             <h1>USERS</h1>
