@@ -25,7 +25,7 @@ exports.insertLink = async (req, res) => {
         });
         try {
             await link.save();
-            res.json({ status: "success" });
+            res.json({ status: "success", link: link });
         } catch (err) {
             res.json({ status: "failed", err: err });
         }
