@@ -42,10 +42,12 @@ function MainPage() {
     const [input, setInput] = useState("");
     const [inserted, setInserted] = useState("");
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     function handleSubmit(e) {
         e.preventDefault();
         if (input !== "") {
+            setLoading(true);
             axios.post("/api/insertLink", { link: input })
                 .then(res => {
                     var data = res.data;
@@ -54,6 +56,7 @@ function MainPage() {
                     } else if (data.status === "failed") {
                         setError(data.err);
                     }
+                    setLoading(false);
                 });
             setInput("");
         }
@@ -78,7 +81,12 @@ function MainPage() {
                     <Grid item xs={12} className={classes.input}>
                         <Grid container justify="center">
                             <Button type="submit" variant="contained" color="primary" className={classes.input}>
-                                <SendIcon />&nbsp;Create
+                                {loading
+                                    ?
+                                    "Creating Link..."
+                                    :
+                                    (<><SendIcon />&nbsp;Create</>)
+                                }
                             </Button>
                         </Grid>
                     </Grid>
