@@ -63,15 +63,15 @@ function MainPage() {
         <Paper className={classes.root} elevation={3}>
             { inserted !== "" ? <Redirect push to={"/show/" + inserted} /> : ""}
             <form onSubmit={handleSubmit}>
-                <Grid container className={classes.mainGrid} direction="column" alignContent="row" alignItems="center" justify="space-between" spacing={3}>
+                <Grid container className={classes.mainGrid} direction="row" alignContent="center" alignItems="center" justify="space-between" spacing={3}>
                     <Typography variant="h5" align="center" className={classes.input}>Link to Shorten</Typography>
                     <Grid item xs={12} className={classes.input}>
-                        <Grid container spacing={2} alignItems="flex-end">
+                        <Grid container spacing={2} alignItems="center">
                             <Grid item md={2} className={classes.inputIcon}>
                                 <LinkIcon />
                             </Grid>
                             <Grid item xs={12} md={10}>
-                                <TextField type="text" id="link" label="Link" value={input} onChange={e => setInput(e.target.value)} error={error !== "" ? true : false} helperText={error} />
+                                <TextField type="text" id="link" label="Link" value={input} onChange={e => setInput(e.target.value)} error={error !== "" ? true : false} helperText={error} fullWidth/>
                             </Grid>
                         </Grid>
                     </Grid>
