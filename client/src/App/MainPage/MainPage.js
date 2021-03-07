@@ -18,14 +18,16 @@ const useStyles = makeStyles((theme) => ({
         transform: "translate(-50%, -50%)",
         width: "auto",
         height: "auto",
-    },
-    paper: {
-        padding: theme.spacing(5),
+        maxWidth: "90vw",
+        maxheight: "90vh",
         backgroundColor: theme.palette.secondary,
+    },
+    mainGrid: {
+        padding: theme.spacing(5),
     },
     input: {
         width: "100%",
-        padding: theme.spacing(2),
+        padding: theme.spacing(1),
     },
     inputIcon: {
         [theme.breakpoints.down("sm")]: {
@@ -58,13 +60,13 @@ function MainPage() {
     }
 
     return (
-        <Grid container className={classes.root} direction="column" alignContent="center" alignItems="center" justify="space-evenly">
+        <Paper className={classes.root} elevation={3}>
             { inserted !== "" ? <Redirect to={"/show/" + inserted} /> : ""}
-            <Paper className={classes.paper} elevation={3}>
-                <Typography variant="h5" align="center">Link to Shorten</Typography>
-                <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
+                <Grid container className={classes.mainGrid} direction="column" alignContent="row" alignItems="center" justify="space-between" spacing={3}>
+                    <Typography variant="h5" align="center" className={classes.input}>Link to Shorten</Typography>
                     <Grid item xs={12} className={classes.input}>
-                        <Grid container spacing={1} alignItems="flex-end">
+                        <Grid container spacing={2} alignItems="flex-end">
                             <Grid item md={2} className={classes.inputIcon}>
                                 <LinkIcon />
                             </Grid>
@@ -75,14 +77,14 @@ function MainPage() {
                     </Grid>
                     <Grid item xs={12} className={classes.input}>
                         <Grid container justify="center">
-                            <Button type="submit" variant="contained" color="primary">
+                            <Button type="submit" variant="contained" color="primary" className={classes.input}>
                                 <SendIcon />&nbsp;Create
                             </Button>
                         </Grid>
                     </Grid>
-                </form>
-            </Paper>
-        </Grid>
+                </Grid>
+            </form>
+        </Paper>
     );
 }
 
