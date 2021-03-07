@@ -21,7 +21,8 @@ exports.insertLink = async (req, res) => {
             _id: mongoose.Types.ObjectId(),
             longUrl: url,
             shortUrl: hashed,
-            createdBy: null
+            createdBy: null,
+            clicks: 0,
         });
         try {
             await link.save();
