@@ -38,7 +38,12 @@ exports.getLink = async (req, res) => {
     var query = req.body;
     try {
         var link = await Link.findOne(query);
-        res.json({ status: "success", link: link });
+        if (link) {
+            link.shortUrl = `${process.env.BASE_URL}/${link.shortUrl}`;
+            res.json({ status: "success", link: link });
+        } else {
+            throw "Not Found";
+        }
     } catch (err) {
         res.json({ status: "failed", err: err });
     }
