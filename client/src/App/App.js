@@ -7,6 +7,7 @@ import {
 import { Container, CssBaseline } from "@material-ui/core";
 import Navbar from "./Navbar/Navbar";
 import MainPage from "./MainPage/MainPage";
+import ShowPage from "./ShowPage/ShowPage";
 
 function App() {
     return (
@@ -15,8 +16,8 @@ function App() {
                 <Navbar />
                 <Container fixed>
                     <Switch>
-                        <Route path="/show">
-                            <h1>SHOW</h1>
+                        <Route path="/show/:hash">
+                            <ShowPage />
                         </Route>
                         <Route path="/users">
                             <h1>USERS</h1>
