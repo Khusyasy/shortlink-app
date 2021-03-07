@@ -19,8 +19,13 @@ const useStyles = makeStyles((theme) => ({
         width: "auto",
         height: "auto",
         maxWidth: "90vw",
-        maxheight: "90vh",
-        backgroundColor: theme.palette.secondary,
+        maxHeight: "90vh",
+        backgroundColor: "white",
+    },
+    form: {
+        width: "90vw",
+        maxWidth: "60ch",
+        height: "auto",
     },
     mainGrid: {
         padding: theme.spacing(5),
@@ -65,11 +70,11 @@ function MainPage() {
     return (
         <Paper className={classes.root} elevation={3}>
             { inserted !== "" ? <Redirect push to={"/show/" + inserted} /> : ""}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={classes.form}>
                 <Grid container className={classes.mainGrid} direction="row" alignContent="center" alignItems="center" justify="space-between" spacing={3}>
                     <Typography variant="h5" align="center" className={classes.input}>Link to Shorten</Typography>
                     <Grid item xs={12} className={classes.input}>
-                        <Grid container spacing={2} alignItems="center">
+                        <Grid container spacing={2} alignItems="flex-end" alignContent="center">
                             <Grid item md={2} className={classes.inputIcon}>
                                 <LinkIcon />
                             </Grid>

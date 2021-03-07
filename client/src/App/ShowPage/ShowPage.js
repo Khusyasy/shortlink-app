@@ -19,10 +19,13 @@ const useStyles = makeStyles((theme) => ({
         width: "auto",
         height: "auto",
         maxWidth: "90vw",
-        maxheight: "90vh",
-        backgroundColor: theme.palette.secondary,
+        maxHeight: "90vh",
+        backgroundColor: "white",
     },
     mainGrid: {
+        width: "90vw",
+        maxWidth: "90ch",
+        height: "auto",
         padding: theme.spacing(5),
     },
     input: {
