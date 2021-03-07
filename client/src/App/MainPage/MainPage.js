@@ -61,7 +61,7 @@ function MainPage() {
 
     return (
         <Paper className={classes.root} elevation={3}>
-            { inserted !== "" ? <Redirect to={"/show/" + inserted} /> : ""}
+            { inserted !== "" ? <Redirect push to={"/show/" + inserted} /> : ""}
             <form onSubmit={handleSubmit}>
                 <Grid container className={classes.mainGrid} direction="column" alignContent="row" alignItems="center" justify="space-between" spacing={3}>
                     <Typography variant="h5" align="center" className={classes.input}>Link to Shorten</Typography>
