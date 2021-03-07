@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import LinkIcon from '@material-ui/icons/Link';
 import LinkOffIcon from '@material-ui/icons/LinkOff';
 import FilterNoneIcon from '@material-ui/icons/FilterNone';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
@@ -78,6 +79,7 @@ function ShowPage() {
                             <LinkOffIcon />
                         </Grid>
                         <Grid item xs={12} md={10}>
+                            <Typography variant="caption" >Long Link</Typography>
                             <Typography variant="body1" className={classes.textOverflow}>{ loading ? "Loading..." : link?.longUrl || "Not Found"}</Typography>
                         </Grid>
                     </Grid>
@@ -88,7 +90,19 @@ function ShowPage() {
                             <LinkIcon />
                         </Grid>
                         <Grid item xs={12} md={10} className={classes.textOverflow}>
+                            <Typography variant="caption" >Short Link</Typography>
                             <Typography variant="body1">{ loading ? "Loading..." : link?.shortUrl || "Not Found"}</Typography>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} className={classes.input}>
+                    <Grid container spacing={2} className={classes.linkContainer} alignItems="center" justify="center" alignContent="center" >
+                        <Grid item md={2} className={classes.inputIcon}>
+                            <VisibilityIcon />
+                        </Grid>
+                        <Grid item xs={12} md={10} className={classes.textOverflow}>
+                            <Typography variant="caption" >Views</Typography>
+                            <Typography variant="body1">{ loading ? "Loading..." : link?.clicks || "Not Found"}</Typography>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -96,7 +110,7 @@ function ShowPage() {
                     <Grid container spacing={3} alignItems="center" justify="center" alignContent="center" >
                         <Grid item xs={12} md={6}>
                             <Button type="button" variant="contained" color="primary" className={classes.input} onClick={handleCopy}>
-                                <FilterNoneIcon /> Copy Link
+                                <FilterNoneIcon />&nbsp;Copy Link
                             </Button>
                         </Grid>
                     </Grid>
