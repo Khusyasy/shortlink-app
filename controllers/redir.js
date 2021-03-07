@@ -5,7 +5,7 @@ const URLisValid = require("../helpers/url_validation");
 
 exports.redirToLink = async (req, res) => {
     try {
-        var link = await Link.findOne({ shortUrl: req.params.short });
+        var link = await Link.findOneAndUpdate({ shortUrl: req.params.short }, { $inc:{clicks: 1}});
         if (URLisValid(link.longUrl)) {
             res.redirect(link.longUrl)
         }
