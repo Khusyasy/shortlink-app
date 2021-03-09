@@ -62,7 +62,7 @@ function Navbar() {
         <AppBar position="static">
             <Toolbar>
                 <Typography variant="h5" className={classes.title}>
-                    News
+                    Short Link App
                 </Typography>
                 <List className={classes.navFlex}>
                     {ListMenus()}
