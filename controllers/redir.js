@@ -10,6 +10,6 @@ exports.redirToLink = async (req, res) => {
             res.redirect(link.longUrl)
         }
     } catch (err) {
-        res.redirect("/error");
+        res.redirect("/");
     }
 }
