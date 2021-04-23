@@ -12,13 +12,16 @@ require("./helpers/database");
 
 const apiRouter = require("./routes/api")
 const redirRouter = require("./routes/redir")
+const usersRouter = require("./routes/users")
 
 app.use("/api", apiRouter);
 
+app.use("/users", usersRouter);
+
 app.use("/", redirRouter);
 
-app.get('*', (req, res) =>{
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
 const port = process.env.PORT || 5000;
