@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("../models/user");
+const jwt = require("jsonwebtoken");
 
 exports.login = async (req, res) => {
     try {
@@ -9,7 +10,8 @@ exports.login = async (req, res) => {
         var valid = await user.checkPassword(req.body.password);
         if (!valid) throw "Wrong Password";
 
-        res.json({ status: "success", user });
+        var token = jwt.sign({ user: user._id }, "jwtsecret");
+        res.json({ status: "success", token });
     } catch (err) {
         res.json({ status: "failed", err });
     }
