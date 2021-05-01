@@ -11,6 +11,7 @@ exports.login = async (req, res) => {
         if (!valid) throw "Wrong Password";
 
         var token = jwt.sign({ user: user._id }, "jwtsecret");
+        res.cookie("jwt", token);
         res.json({ status: "success", token });
     } catch (err) {
         res.json({ status: "failed", err });
