@@ -56,13 +56,13 @@ function ShowPage() {
     useEffect(() => {
         setLoading(true);
         axios.post("/api/getLink", { shortUrl: hashParam })
-                .then(res => {
-                    var data = res.data;
-                    if (data.status === "success") {
-                        setLink(data.link);
-                    }
-                    setLoading(false);
-                });
+            .then(res => {
+                var data = res.data;
+                if (data.status === "success") {
+                    setLink(data.link);
+                }
+                setLoading(false);
+            });
     }, [hashParam])
 
     function handleCopy() {
@@ -80,7 +80,7 @@ function ShowPage() {
                         </Grid>
                         <Grid item xs={12} md={10}>
                             <Typography variant="caption" >Long Link</Typography>
-                            <Typography variant="body1" className={classes.textOverflow}>{ loading ? "Loading..." : link?.longUrl || "Not Found"}</Typography>
+                            <Typography variant="body1" className={classes.textOverflow}>{loading ? "Loading..." : link?.longUrl || "Not Found"}</Typography>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -91,7 +91,7 @@ function ShowPage() {
                         </Grid>
                         <Grid item xs={12} md={10} className={classes.textOverflow}>
                             <Typography variant="caption" >Short Link</Typography>
-                            <Typography variant="body1">{ loading ? "Loading..." : link?.shortUrl || "Not Found"}</Typography>
+                            <Typography variant="body1">{loading ? "Loading..." : link?.shortUrl || "Not Found"}</Typography>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -102,7 +102,7 @@ function ShowPage() {
                         </Grid>
                         <Grid item xs={12} md={10} className={classes.textOverflow}>
                             <Typography variant="caption" >Views</Typography>
-                            <Typography variant="body1">{ loading ? "Loading..." : link?.clicks || "Not Found"}</Typography>
+                            <Typography variant="body1">{loading ? "Loading..." : link?.clicks || "Not Found"}</Typography>
                         </Grid>
                     </Grid>
                 </Grid>

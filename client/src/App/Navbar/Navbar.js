@@ -46,7 +46,7 @@ function ListMenus() {
                 <Link component={RouterLink} to="/" color="inherit">Home</Link>
             </ListItem>
             <ListItem>
-                <Link component={RouterLink} to="/login" color="inherit">Login</Link>
+                <Link component={RouterLink} to="/users/login" color="inherit">Login</Link>
             </ListItem>
         </>
     );
@@ -54,27 +54,27 @@ function ListMenus() {
 
 function Navbar() {
     const classes = useStyles();
-    
+
     const [openDrawer, setOpenDrawer] = useState(false);
 
     return (
         <div className={classes.root}>
-        <AppBar position="static">
-            <Toolbar>
-                <Typography variant="h5" className={classes.title}>
-                    Short Link App
+            <AppBar position="static">
+                <Toolbar>
+                    <Typography variant="h5" className={classes.title}>
+                        Short Link App
                 </Typography>
-                <List className={classes.navFlex}>
-                    {ListMenus()}
-                </List>
-                <Button className={classes.drawerButton} variant="outlined" color="inherit" onClick={() => setOpenDrawer(true)}>MENU</Button>
-            </Toolbar>
-            <Drawer anchor="right" open={openDrawer} onClose={() => setOpenDrawer(false)}>
-                <List className={classes.navDrawer}>
-                    {ListMenus()}
-                </List>
-            </Drawer>
-        </AppBar>
+                    <List className={classes.navFlex}>
+                        {ListMenus()}
+                    </List>
+                    <Button className={classes.drawerButton} variant="outlined" color="inherit" onClick={() => setOpenDrawer(true)}>MENU</Button>
+                </Toolbar>
+                <Drawer anchor="right" open={openDrawer} onClose={() => setOpenDrawer(false)}>
+                    <List className={classes.navDrawer}>
+                        {ListMenus()}
+                    </List>
+                </Drawer>
+            </AppBar>
         </div>
     );
 }

@@ -1,13 +1,14 @@
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
 } from "react-router-dom";
 import { Container, CssBaseline } from "@material-ui/core";
 import Navbar from "./Navbar/Navbar";
 import MainPage from "./MainPage/MainPage";
 import ShowPage from "./ShowPage/ShowPage";
+import LoginPage from "./LoginPage/LoginPage";
 
 function App() {
     return (
@@ -19,8 +20,8 @@ function App() {
                         <Route path="/show/:hash">
                             <ShowPage />
                         </Route>
-                        <Route path="/users">
-                            <h1>USERS</h1>
+                        <Route path="/users/login">
+                            <LoginPage />
                         </Route>
                         <Route path="/">
                             <MainPage />
