@@ -1,9 +1,13 @@
 import { Redirect } from "react-router-dom";
 import { useCookies } from 'react-cookie';
+import { useEffect } from 'react';
 
 function LogoutPage() {
     const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
-    removeCookie("jwt");
+
+    useEffect(() => {
+        removeCookie("jwt");
+    }, [])
 
     return (
         <Redirect push to={"/"} />
