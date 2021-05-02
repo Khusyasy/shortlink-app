@@ -28,8 +28,18 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
     },
     table: {
-        minWidth: 650,
+        minWidth: 200,
+        maxWidth: "70ch",
+        maxHeight: "75vh",
     },
+    head: {
+        backgroundColor: theme.palette.primary.main,
+        padding: 0,
+        margin: 0,
+    },
+    headText: {
+        color: theme.palette.primary.contrastText,
+    }
 }));
 
 function LinksPage() {
@@ -52,32 +62,30 @@ function LinksPage() {
     }, [])
 
     return (
-        <Paper className={classes.root} elevation={3}>
-            <TableContainer>
-                {loading ? "Loading..." :
-                    <Table className={classes.table} aria-label="Table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Long Url</TableCell>
-                                <TableCell>Details</TableCell>
+        <TableContainer component={Paper} className={classes.root} elevation={3}>
+            {loading ? "Loading..." :
+                <Table className={classes.table} aria-label="Table">
+                    <TableHead className={classes.head}>
+                        <TableRow>
+                            <TableCell className={classes.headText}>Long Url</TableCell>
+                            <TableCell className={classes.headText}>Details</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {links.map(link => (
+                            <TableRow key={link._id}>
+                                <TableCell>
+                                    {link.longUrl}
+                                </TableCell>
+                                <TableCell>
+                                    <Link component={RouterLink} to={"/show/" + link.shortUrl} color="inherit">View</Link>
+                                </TableCell>
                             </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {links.map(link => (
-                                <TableRow key={link._id}>
-                                    <TableCell component="th" scope="row">
-                                        {link.longUrl}
-                                    </TableCell>
-                                    <TableCell>
-                                        <Link component={RouterLink} to={"/show/" + link.shortUrl} color="inherit">View</Link>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                }
-            </TableContainer>
-        </Paper >
+                        ))}
+                    </TableBody>
+                </Table>
+            }
+        </TableContainer>
     );
 }
 
