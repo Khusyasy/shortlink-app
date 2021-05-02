@@ -9,6 +9,7 @@ import MainPage from "./MainPage/MainPage";
 import ShowPage from "./ShowPage/ShowPage";
 import LoginPage from "./LoginPage/LoginPage";
 import LogoutPage from "./LogoutPage/LogoutPage";
+import RegisterPage from "./RegisterPage/RegisterPage";
 
 function App() {
     return (
@@ -30,7 +31,7 @@ function App() {
                             {/* user links */}
                         </Route>
                         <Route path="/users/register">
-                            {/* register */}
+                            <RegisterPage />
                         </Route>
                         <Route path="/">
                             <MainPage />
