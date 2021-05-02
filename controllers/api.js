@@ -18,15 +18,18 @@ exports.getLinks = async (req, res) => {
 
 exports.insertLink = async (req, res) => {
     var url = req.body.link;
-    var token = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET) || null;
-    var user = await User.findById(token.user);
+    var user = null;
+    if (req.cookies.jwt) {
+        var token = jwt.verify(jwtToken, process.env.JWT_SECRET);
+        user = await User.findById(token.user);
+    }
     if (URLisValid(url)) {
         var hashed = createShortID(url + Date.now());
         var link = new Link({
             _id: mongoose.Types.ObjectId(),
             longUrl: url,
             shortUrl: hashed,
-            createdBy: user || null,
+            createdBy: user,
             clicks: 0,
         });
         try {
