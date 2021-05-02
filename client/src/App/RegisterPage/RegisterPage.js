@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import { useCookies } from 'react-cookie';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -81,7 +80,7 @@ function RegisterPage() {
                 if (data.status === "success") {
                     setRegister(true);
                 } else if (data.status === "failed") {
-                    if (data.err.code = 11000) {
+                    if (data.err.code === 11000) {
                         setEmailErr("Email is already registered, Login or use another email.")
                     }
                 }
