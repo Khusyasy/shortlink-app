@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -52,6 +53,8 @@ function LoginPage() {
     const [login, setLogin] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
+
     function handleSubmit(e) {
         e.preventDefault();
         if (email === "") {
@@ -69,6 +72,7 @@ function LoginPage() {
                 var data = res.data;
                 console.log(data);
                 if (data.status === "success") {
+                    setCookie("jwt", data.token);
                     setLogin(true);
                 } else if (data.status === "failed") {
 

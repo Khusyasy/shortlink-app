@@ -48,6 +48,9 @@ function ListMenus() {
             <ListItem>
                 <Link component={RouterLink} to="/users/login" color="inherit">Login</Link>
             </ListItem>
+            <ListItem>
+                <Link component={RouterLink} to="/users/logout" color="inherit">Logout</Link>
+            </ListItem>
         </>
     );
 }
