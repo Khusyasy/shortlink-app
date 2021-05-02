@@ -10,6 +10,7 @@ import ShowPage from "./ShowPage/ShowPage";
 import LoginPage from "./LoginPage/LoginPage";
 import LogoutPage from "./LogoutPage/LogoutPage";
 import RegisterPage from "./RegisterPage/RegisterPage";
+import LinksPage from "./LinksPage/LinksPage";
 
 function App() {
     return (
@@ -28,7 +29,7 @@ function App() {
                             <LogoutPage />
                         </Route>
                         <Route path="/users/links">
-                            {/* user links */}
+                            <LinksPage />
                         </Route>
                         <Route path="/users/register">
                             <RegisterPage />
