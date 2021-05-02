@@ -70,7 +70,6 @@ function LoginPage() {
         axios.post("/users/login", { email, password })
             .then(res => {
                 var data = res.data;
-                console.log(data);
                 if (data.status === "success") {
                     setCookie("jwt", data.token);
                     setLogin(true);

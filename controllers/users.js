@@ -10,7 +10,7 @@ exports.login = async (req, res) => {
         var valid = await user.checkPassword(req.body.password);
         if (!valid) throw "Wrong Password";
 
-        var token = jwt.sign({ user: user._id }, "jwtsecret");
+        var token = jwt.sign({ user: user._id }, process.env.JWT_SECRET);
         res.json({ status: "success", token });
     } catch (err) {
         res.json({ status: "failed", err });

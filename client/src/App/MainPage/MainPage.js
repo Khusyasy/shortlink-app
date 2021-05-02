@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -59,7 +59,8 @@ function MainPage() {
                     if (data.status === "success") {
                         setInserted(data.link.shortUrl);
                     } else if (data.status === "failed") {
-                        setError(data.err);
+                        console.log(data.err);
+                        // setError(data.err);
                     }
                     setLoading(false);
                 });
@@ -79,7 +80,7 @@ function MainPage() {
                                 <LinkIcon />
                             </Grid>
                             <Grid item xs={12} md={10}>
-                                <TextField type="text" id="link" label="Link" value={input} onChange={e => setInput(e.target.value)} error={error !== "" ? true : false} helperText={error} fullWidth/>
+                                <TextField type="text" id="link" label="Link" value={input} onChange={e => setInput(e.target.value)} error={error !== "" ? true : false} helperText={error} fullWidth />
                             </Grid>
                         </Grid>
                     </Grid>

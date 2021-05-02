@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const Link = require("../models/link");
+const User = require("../models/user");
+const jwt = require("jsonwebtoken");
 
 const createShortID = require("../helpers/short_hash");
 const URLisValid = require("../helpers/url_validation");
@@ -15,13 +17,15 @@ exports.getLinks = async (req, res) => {
 
 exports.insertLink = async (req, res) => {
     var url = req.body.link;
+    var token = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET) || null;
+    var user = await User.findById(token.user);
     if (URLisValid(url)) {
         var hashed = createShortID(url + Date.now());
         var link = new Link({
             _id: mongoose.Types.ObjectId(),
             longUrl: url,
             shortUrl: hashed,
-            createdBy: null,
+            createdBy: user || null,
             clicks: 0,
         });
         try {
