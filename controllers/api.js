@@ -20,7 +20,7 @@ exports.insertLink = async (req, res) => {
     var url = req.body.link;
     var user = null;
     if (req.cookies.jwt) {
-        var token = jwt.verify(jwtToken, process.env.JWT_SECRET);
+        var token = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET);
         user = await User.findById(token.user);
     }
     if (URLisValid(url)) {
