@@ -26,6 +26,12 @@ function App() {
                         <Route path="/users/logout">
                             <LogoutPage />
                         </Route>
+                        <Route path="/users/links">
+                            {/* user links */}
+                        </Route>
+                        <Route path="/users/register">
+                            {/* register */}
+                        </Route>
                         <Route path="/">
                             <MainPage />
                         </Route>

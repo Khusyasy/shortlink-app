@@ -9,6 +9,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Button from "@material-ui/core/Button";
 import Drawer from "@material-ui/core/Drawer";
+import { useCookies } from 'react-cookie';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,17 +41,29 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ListMenus() {
+    const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
+
     return (
         <>
             <ListItem>
                 <Link component={RouterLink} to="/" color="inherit">Home</Link>
             </ListItem>
-            <ListItem>
-                <Link component={RouterLink} to="/users/login" color="inherit">Login</Link>
-            </ListItem>
-            <ListItem>
-                <Link component={RouterLink} to="/users/logout" color="inherit">Logout</Link>
-            </ListItem>
+            {!cookies.jwt && <>
+                <ListItem>
+                    <Link component={RouterLink} to="/users/login" color="inherit">Login</Link>
+                </ListItem>
+                <ListItem>
+                    <Link component={RouterLink} to="/users/register" color="inherit">Register</Link>
+                </ListItem>
+            </>}
+            {cookies.jwt && <>
+                <ListItem>
+                    <Link component={RouterLink} to="/users/logout" color="inherit">Logout</Link>
+                </ListItem>
+                <ListItem>
+                    <Link component={RouterLink} to="/users/links" color="inherit">Links</Link>
+                </ListItem>
+            </>}
         </>
     );
 }
