@@ -7,8 +7,9 @@ const createShortID = require("../helpers/short_hash");
 const URLisValid = require("../helpers/url_validation");
 
 exports.getLinks = async (req, res) => {
+    var token = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET) || null;
     try {
-        var links = await Link.find();
+        var links = await Link.find({ createdBy: token.user });
         res.json({ status: "success", links: links });
     } catch (err) {
         res.json({ status: "failed", err: err });
