@@ -7,4 +7,4 @@ This is a website where you can shorten your link, and use it and share shortene
 - View how many times your link has been clicked.
 
 ## Objectives
-I wanted to learn the MERN Stack, so i have to combine what i have learned about React JS and Express JS, i also learn how to do CRUD with MongoDB databases using Mongoose.
+I wanted to learn the MERN Stack, so i have to combine what i have learned about React JS and Express JS, i also learn how to do CRUD with MongoDB databases using Mongoose, and using JWT for authentication.
