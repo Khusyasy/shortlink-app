@@ -40,27 +40,27 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function ListMenus() {
+function ListMenus({ handleCloseDrawer }) {
     const [cookies, setCookie, removeCookie] = useCookies(['jwt']);
 
     return (
         <>
-            <ListItem>
+            <ListItem onClick={handleCloseDrawer}>
                 <Link component={RouterLink} to="/" color="inherit">Home</Link>
             </ListItem>
             {!cookies.jwt && <>
-                <ListItem>
+                <ListItem onClick={handleCloseDrawer}>
                     <Link component={RouterLink} to="/users/login" color="inherit">Login</Link>
                 </ListItem>
-                <ListItem>
+                <ListItem onClick={handleCloseDrawer}>
                     <Link component={RouterLink} to="/users/register" color="inherit">Register</Link>
                 </ListItem>
             </>}
             {cookies.jwt && <>
-                <ListItem>
+                <ListItem onClick={handleCloseDrawer}>
                     <Link component={RouterLink} to="/users/logout" color="inherit">Logout</Link>
                 </ListItem>
-                <ListItem>
+                <ListItem onClick={handleCloseDrawer}>
                     <Link component={RouterLink} to="/users/links" color="inherit">Links</Link>
                 </ListItem>
             </>}
@@ -73,21 +73,24 @@ function Navbar() {
 
     const [openDrawer, setOpenDrawer] = useState(false);
 
+    const handleOpenDrawer = () => setOpenDrawer(true);
+    const handleCloseDrawer = () => setOpenDrawer(false);
+
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h5" className={classes.title}>
                         Short Link App
-                </Typography>
+                    </Typography>
                     <List className={classes.navFlex}>
-                        {ListMenus()}
+                        <ListMenus></ListMenus>
                     </List>
                     <Button className={classes.drawerButton} variant="outlined" color="inherit" onClick={() => setOpenDrawer(true)}>MENU</Button>
                 </Toolbar>
-                <Drawer anchor="right" open={openDrawer} onClose={() => setOpenDrawer(false)}>
+                <Drawer anchor="right" open={openDrawer} onClose={handleCloseDrawer}>
                     <List className={classes.navDrawer}>
-                        {ListMenus()}
+                        <ListMenus handleCloseDrawer={handleCloseDrawer}></ListMenus>
                     </List>
                 </Drawer>
             </AppBar>
