@@ -59,8 +59,7 @@ function MainPage() {
                     if (data.status === "success") {
                         setInserted(data.link.shortUrl);
                     } else if (data.status === "failed") {
-                        console.log(data.err);
-                        // setError(data.err);
+                        setError(data.err);
                     }
                     setLoading(false);
                 });
